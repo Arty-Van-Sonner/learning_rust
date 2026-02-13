@@ -1,6 +1,8 @@
 # learning_rust
 
-## Commands
+## lesson 3 (Constants, tuples, and arrays)
+
+### Commands
 1. rustc src/main.rs
 2. cargo new project_name
 3. cargo run
