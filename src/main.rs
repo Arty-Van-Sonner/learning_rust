@@ -1,3 +1,5 @@
+use std::io;
+
 fn main() {
     // comment
 
@@ -53,4 +55,70 @@ fn main() {
     nums_mut[3] = 4;
     nums_mut[4] = 5;
     println!("Nums mut: [{}, {}, {}, {}, {}]", nums_mut[0], nums_mut[1], nums_mut[2], nums_mut[3], nums_mut[4]);
+
+    
+    //// Memory Management and Ownership
+    //// User input
+    let mut user_data = String::new();
+    println!("\n\nInput something");
+    io::stdin().read_line(&mut user_data).expect("Fail to read information");
+    println!("Result: {}", user_data);
+
+    // let mut num1 = String::new();
+    // let mut num2 = String::new();
+    // println!("Enter num1: ");
+    // io::stdin().read_line(&mut num1).expect("Fail to read information");
+
+    // println!("Enter num2: ");
+    // io::stdin().read_line(&mut num2).expect("Fail to read information");
+
+    // let num1: i16 = num1.trim().parse().expect("Pleese enter a valid number");
+    // let num2: u8 = num2.trim().parse().expect("Pleese enter a valid number");
+    // println!("Result 1: {}, result 2: {}", num1, num2);
+
+    // let mut res: i16 = num1 + num2 as i16;
+    // println!("Result: {}", res);
+
+    // res += num1 - num2 as i16;
+    // println!("Result: {}", res);
+
+
+    //// Ownership
+    // let s1 = String::from("Hello");
+    // let s2 = s1;
+    // println!("Ownership: {}", s1); // Error
+
+    let s1 = String::from("Hello");
+    let len = calculate_length(&s1);
+    println!("Length of '{}' is {}", s1, len);
+
+    let mut s = String::from("Hello");
+    change(&mut s);
+    // println!(s); Error
+    println!("{}", s);
+
+    let mut s = String::from("Hello");
+    let r1 = &s; // Не изменяемое заимсвтование
+    let r2 = &s; // Ещё одно заимстовование
+    let r3 = &mut s; // Ошибка, нельзя создвать изменяемое заимстваование, пока существует хот одна изменяемая ссылка 
+    // println!("{}, {}, {}", r1, r2, r3);
+/*     
+    error: 3 positional arguments in format string, but there is 1 argument
+    --> src/main.rs:104:15
+        |
+    104 |     println!("{}, {}, {}", r3);
+        |               ^^  ^^  ^^   --
+
+    error: could not compile `learning_rust` (bin "learning_rust" test) due to 1 previous error
+*/ 
+
+    println!("{}", r3);
+}
+
+fn calculate_length(s: &String) -> usize {
+    return s.len();
+}
+
+fn change(s: &mut String) {
+    s.push_str(", World");
 }

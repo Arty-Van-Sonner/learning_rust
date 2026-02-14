@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 3 (Constants, tuples, and arrays)
+## lesson 4 (Memory Management and Ownership)
 
 ### Commands
 1. rustc src/main.rs
