@@ -10,6 +10,7 @@ fn main() {
     println!("Hello, world!");
 
     // Integer: i8; i16; i32; i64; i128; u8; u16; u32; u64; u128
+    println!("\nInteger: i8; i16; i32; i64; i128; u8; u16; u32; u64; u128");
     let mut num: u8 = 50;
     num += 10;
     println!("Result: {}", num);
@@ -31,11 +32,14 @@ fn main() {
 
     
     // lesson 3 (Constants, tuples, and arrays)
+    println!("\n\n\nlesson 3 (Constants, tuples, and arrays)");
     // Constants
+    println!("\nConstants");
     const USER_MAX_SCORE: u32 = 1_000_000;
     println!("Info: {}", USER_MAX_SCORE);
 
     // Tuple
+    println!("\nTuple");
     let user_alex: (i8, bool, f32, char) = (42, true, 1.86, 'R');
     println!("Alex data: ({}, {}, {}, {})", user_alex.0, user_alex.1, user_alex.2, user_alex.3);
 
@@ -46,6 +50,7 @@ fn main() {
     println!("Gosha data: ({}, {}, {}, {})", user_gosha.0, user_gosha.1, user_gosha.2, user_gosha.3);
 
     // Array
+    println!("\nArray");
     let nums: [i8; 5] = [1, 5, 6, 4, 4];
     println!("Nums: [{}, {}, {}, {}, {}]", nums[0], nums[1], nums[2], nums[3], nums[4]);
 
@@ -57,10 +62,12 @@ fn main() {
     println!("Nums mut: [{}, {}, {}, {}, {}]", nums_mut[0], nums_mut[1], nums_mut[2], nums_mut[3], nums_mut[4]);
 
     
-    //// Memory Management and Ownership
+    //// lesson 4 (Memory Management and Ownership)
+    println!("\n\n\nlesson 4 (Memory Management and Ownership)");
     //// User input
+    println!("\nUser input");
     let mut user_data = String::new();
-    println!("\n\nInput something");
+    println!("\nInput something");
     io::stdin().read_line(&mut user_data).expect("Fail to read information");
     println!("Result: {}", user_data);
 
@@ -84,6 +91,7 @@ fn main() {
 
 
     //// Ownership
+    // println!("\nOwnership");
     // let s1 = String::from("Hello");
     // let s2 = s1;
     // println!("Ownership: {}", s1); // Error
@@ -113,6 +121,41 @@ fn main() {
 */ 
 
     println!("{}", r3);
+
+
+    // lesson 5 (Conditional constructs: if-else, match)
+    println!("\n\n\nlesson 5 (Conditional constructs: if-else, match)");
+    // if-else
+    println!("\nif-else");
+    let number: u8 = 10;
+    let is_has_car: bool = true;
+    
+    if number > 5 && is_has_car {
+        println!("Number is bigger than 5");
+    } else if number > 10 || !is_has_car {
+        println!("Number is bigger than 10");
+    } else {
+        println!("Else");
+    }
+
+    // Ternary operator
+    println!("\nTernary operator");
+    let condition: bool = true;
+    let number: u8 = if condition {5} else {10};
+    println!("Ternary operator res: {}", number);
+
+    // Operator match
+    println!("\nOperator match");
+    let number: u8 = 3;
+    
+    match number {
+        1 => println!("Result 1"),
+        2 => println!("Result 2"),
+        3 => println!("Result 3"),
+        4 => println!("Result 4"),
+        5 => println!("Result 5"),
+        _ => println!("Else")
+    }
 }
 
 fn calculate_length(s: &String) -> usize {

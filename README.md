@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 4 (Memory Management and Ownership)
+## lesson 5 (Conditional constructs: if-else, match)
 
 ### Commands
 1. rustc src/main.rs
