@@ -10,7 +10,7 @@ fn main() {
     println!("Hello, world!");
 
     // Integer: i8; i16; i32; i64; i128; u8; u16; u32; u64; u128
-    println!("\nInteger: i8; i16; i32; i64; i128; u8; u16; u32; u64; u128");
+    println!("\n// Integer: i8; i16; i32; i64; i128; u8; u16; u32; u64; u128");
     let mut num: u8 = 50;
     num += 10;
     println!("Result: {}", num);
@@ -32,14 +32,14 @@ fn main() {
 
     
     // lesson 3 (Constants, tuples, and arrays)
-    println!("\n\n\nlesson 3 (Constants, tuples, and arrays)");
+    println!("\n\n\n// lesson 3 (Constants, tuples, and arrays)");
     // Constants
-    println!("\nConstants");
+    println!("\n// Constants");
     const USER_MAX_SCORE: u32 = 1_000_000;
     println!("Info: {}", USER_MAX_SCORE);
 
     // Tuple
-    println!("\nTuple");
+    println!("\n// Tuple");
     let user_alex: (i8, bool, f32, char) = (42, true, 1.86, 'R');
     println!("Alex data: ({}, {}, {}, {})", user_alex.0, user_alex.1, user_alex.2, user_alex.3);
 
@@ -50,7 +50,7 @@ fn main() {
     println!("Gosha data: ({}, {}, {}, {})", user_gosha.0, user_gosha.1, user_gosha.2, user_gosha.3);
 
     // Array
-    println!("\nArray");
+    println!("\n// Array");
     let nums: [i8; 5] = [1, 5, 6, 4, 4];
     println!("Nums: [{}, {}, {}, {}, {}]", nums[0], nums[1], nums[2], nums[3], nums[4]);
 
@@ -63,11 +63,11 @@ fn main() {
 
     
     //// lesson 4 (Memory Management and Ownership)
-    println!("\n\n\nlesson 4 (Memory Management and Ownership)");
+    println!("\n\n\n// lesson 4 (Memory Management and Ownership)");
     //// User input
-    println!("\nUser input");
+    println!("\n// User input");
     let mut user_data = String::new();
-    println!("\nInput something");
+    println!("\n// Input something");
     io::stdin().read_line(&mut user_data).expect("Fail to read information");
     println!("Result: {}", user_data);
 
@@ -91,7 +91,7 @@ fn main() {
 
 
     //// Ownership
-    // println!("\nOwnership");
+    // println!("\n// Ownership");
     // let s1 = String::from("Hello");
     // let s2 = s1;
     // println!("Ownership: {}", s1); // Error
@@ -124,9 +124,9 @@ fn main() {
 
 
     // lesson 5 (Conditional constructs: if-else, match)
-    println!("\n\n\nlesson 5 (Conditional constructs: if-else, match)");
+    println!("\n\n\n// lesson 5 (Conditional constructs: if-else, match)");
     // if-else
-    println!("\nif-else");
+    println!("\n// if-else");
     let number: u8 = 10;
     let is_has_car: bool = true;
     
@@ -139,13 +139,13 @@ fn main() {
     }
 
     // Ternary operator
-    println!("\nTernary operator");
+    println!("\n// Ternary operator");
     let condition: bool = true;
     let number: u8 = if condition {5} else {10};
     println!("Ternary operator res: {}", number);
 
     // Operator match
-    println!("\nOperator match");
+    println!("\n// Operator match");
     let number: u8 = 3;
     
     match number {
@@ -155,6 +155,67 @@ fn main() {
         4 => println!("Result 4"),
         5 => println!("Result 5"),
         _ => println!("Else")
+    }
+
+    // lesson 6 (Loops and operators)
+    println!("\n\n\n// lesson 6 (Loops and operators)");
+    // Loops Rust
+    println!("\n// Loops Rust");
+    // For
+    println!("\n// For");
+    for i in 1..4 {
+        println!("i (for i in 1..4): {}", i);
+    }
+    println!("");
+    for i in 1..=4 {
+        println!("i (for i in 1..=4): {}", i);
+    }
+    println!("");
+    for i in (1..=4).rev() {
+        println!("i (for i in (1..=4).rev()): {}", i);
+    }
+    println!("");
+    for i in (1..=10).rev().step_by(2) {
+        println!("i (for i in (1..=10).rev().step_by(2)): {}", i);
+    }
+
+    // While
+    println!("\n// While");
+    let mut i: u8 = 8;
+    while i > 0 {
+        println!("i (while i > 0): {}", i);
+        i -= 1;
+    }
+    println!("");
+    for i in 1..21 {
+        if i % 2 == 0 {
+            continue;
+        }
+        println!("for !(i % 2 == 0) in 1..21: {}", i);
+        if i > 15 {
+            break;
+        }
+    }
+
+    // Loop
+    println!("\n// oop");
+    let mut count: u8 = 0;
+    loop {
+        println!("Count (loop): {}", count);
+        count += 1;
+        if count >= 128 {
+            break;
+        }   
+    }
+
+    // Arrays and Loops
+    println!("\n// Arrays and Loops");
+    let array = [10, 20, 30, 40, 50];
+    for el in array {
+        println!("el (for el in array): {}", el);
+    }
+    for el in [1, 2, 3, 4, 5] {
+        println!("el (for el in [1, 2, 3, 4, 5]): {}", el);
     }
 }
 

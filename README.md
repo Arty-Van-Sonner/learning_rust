@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 5 (Conditional constructs: if-else, match)
+## lesson 6 (Loops and operators)
 
 ### Commands
 1. rustc src/main.rs
