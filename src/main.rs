@@ -1,5 +1,23 @@
 use std::io;
 
+macro_rules! my_print {
+    ($msg:expr) => {
+        println!("{}", $msg);    
+    };
+}
+
+mod math {
+    pub fn add(a: i32, b: i32) -> i32 {
+        return a + b;
+    }
+
+    pub fn minus(a: i32, b: i32) -> i32 {
+        return a - b;
+    }
+}
+
+mod math1;
+
 fn main() {
     // comment
 
@@ -217,6 +235,54 @@ fn main() {
     for el in [1, 2, 3, 4, 5] {
         println!("el (for el in [1, 2, 3, 4, 5]): {}", el);
     }
+
+    // lesson 7 (Functions and modules)
+    println!("\n\n\n// lesson 7 (Functions and modules)");
+    // Functions
+    println!("\n// Functions");
+    test();
+    test();
+    add(6, 4);
+    add(43, 54);
+    print!("\n\n");
+    greet_user("user");
+    greet_user("Test user");
+
+    // Change paramter in function
+    println!("\n// Change paramter in function");
+    let mut user = String::from("User change test");
+    let mut user1 = String::from("Test change user");
+    println!("user: {}\nuser1: {}", user, user1);
+    change_str(&mut user, &mut user1);
+    println!("user: {}\nuser1: {}", user, user1);
+
+    // Return
+    println!("\n// Return");
+    let resuslt = add(4, 5);
+    println!("Return: {}", resuslt);
+    println!("mult(5, 8): {}", mult(&(5, 8)));
+
+    // Macros rules
+    println!("\n// Macros rules");
+    my_print!("Hallo, Rust");
+
+    // Modules
+    println!("\n// Modules");
+    let sum = math::add(4, 9);
+    let ras = math::minus(7, 4);
+    println!("sum: {}\nras: {}", sum, ras);
+    let mult = math1::mult(4, 9);
+    let division = math1::division(7, 4);
+    println!("mult: {}\ndivision: {}", mult, division);
+}
+
+fn change_str(user: &mut String, user1: &mut String) {
+    // let buf = user;
+    // *user = user1;
+    // *user1 = buf;
+    *user = String::from("user1");
+    *user1 = String::from("user");
+    println!("changed");
 }
 
 fn calculate_length(s: &String) -> usize {
@@ -225,4 +291,23 @@ fn calculate_length(s: &String) -> usize {
 
 fn change(s: &mut String) {
     s.push_str(", World");
+}
+
+fn test() {
+    println!("test (Hallo)")
+}
+
+fn add(a: i32, b: i32) -> i32 {
+    let res = a + b;
+    print!("add (a + b = {})", res);
+    println!("test print ln and print");
+    return res;
+}
+
+fn greet_user(name: &str) {
+    println!("Name: {}", name);
+}
+
+fn mult(data: &(i32, i32)) -> i32 {
+    return data.0 * data.1;
 }

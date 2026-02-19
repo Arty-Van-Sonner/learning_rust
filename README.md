@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 6 (Loops and operators)
+## lesson 7 (Functions and modules)
 
 ### Commands
 1. rustc src/main.rs
