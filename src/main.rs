@@ -1,4 +1,5 @@
 use std::io;
+use std::collections::HashMap;
 
 macro_rules! my_print {
     ($msg:expr) => {
@@ -274,6 +275,72 @@ fn main() {
     let mult = math1::mult(4, 9);
     let division = math1::division(7, 4);
     println!("mult: {}\ndivision: {}", mult, division);
+
+    // lesson 8 (Vectors, strings and collections)
+    println!("\n\n\n// lesson 8 (Vectors, strings and collections)");
+    //Vectors
+    println!("\n// Vectors");
+    let mut vector: Vec<i32> = Vec::new();
+    vector.push(10);
+    vector.push(20);
+    vector.push(30);
+    vector.push(40);
+    println!("Vector: {:?}", vector);
+    vector[0] = 256;
+    println!("Vector[0]: {:?}", vector[0]);
+    println!("Vector: {:?}", vector);
+
+    let mut vector2 = vec![1, 5, 3, 6, 7];
+    vector2.push(56);
+    println!("Vector2: {:?}", vector2);
+
+    let index: usize = 10;
+    match vector2.get(index) {
+        Some(value) => println!("Vector2 el: {}", value),
+        None => println!("Error no element"),
+    }
+
+    // Vector (pop), for value in vector
+    println!("\n// Vector (pop), for value in vector");
+    let mut vector3 = vec![100, 200, 300];
+    vector3.pop();
+    vector3.push(1024);
+    vector3.remove(1);
+    for value in &vector3 {
+        println!("vector3 el: {}", value);
+    }
+
+    // Strings
+    println!("\n// Strings");
+    let str1 = String::new();
+    let str2 = String::from("Hello, Rust");
+    println!("str1: {}\nstr2: {}", str1, str2);
+
+    let str3 = str1 + &str2;
+    let mut word = String::new();
+    word.push_str("Hello");
+    word.push(' ');
+    word.push_str("Rust");
+    word.push('\n');
+    word.push_str(&str3);
+    println!("\nString test push and push_str \n{}", word);
+
+    // HashMap
+    println!("\n// HashMap");
+    let mut scores = HashMap::new();
+    scores.insert("Blue", 10);
+    scores.insert("Red", 5);
+    scores.insert("Grey", 30);
+    println!("{:?}", scores);
+
+    scores.insert("Red", 15);
+    println!("{:?}", scores);
+    println!("Hash['Red']: {:?}", scores.get("Red"));
+    println!("Hash['Red']: {:?}", scores.get("Red").unwrap());
+    println!("Hash['Red']: {}", scores.get("Red").unwrap());
+
+    scores.remove("Grey");
+    println!("{:?}", scores);
 }
 
 fn change_str(user: &mut String, user1: &mut String) {

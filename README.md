@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 7 (Functions and modules)
+## lesson 8 (Vectors, strings and collections)
 
 ### Commands
 1. rustc src/main.rs
