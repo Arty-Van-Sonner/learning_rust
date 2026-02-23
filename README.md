@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 8 (Vectors, strings and collections)
+## lesson 9 (Errors and processing)
 
 ### Commands
 1. rustc src/main.rs

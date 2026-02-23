@@ -1,5 +1,8 @@
-use std::io;
+use std::fs::{self, remove_file};
+use std::{io, result};
 use std::collections::HashMap;
+
+use crate::math1::division;
 
 macro_rules! my_print {
     ($msg:expr) => {
@@ -341,6 +344,44 @@ fn main() {
 
     scores.remove("Grey");
     println!("{:?}", scores);
+
+    // lesson 9 (Errors and processing)
+    println!("\n\n\n// lesson 9 (Errors and processing)");
+    // Resul
+    let result = divide(4, 4).unwrap();
+    println!("Resul: {}\n", result);
+    let result = divide(4, 2);
+    println!("Resul1: {:?}\n", result);
+    // let result = divide(4, 0).expect("Error in division");
+    // println!("Resul2: {}\n", result);
+    // let result = divide(4, 0);
+    // println!("Resul3: {:?}\n", result);
+
+    let element = find_element(vec![1, 2, 3, 4, 5], 3);
+    println!("{:?}", element);
+    let element = find_element(vec![1, 2, 3, 4, 5], 32);
+    println!("{:?}", element);
+    // let element = find_element(vec![1, 2, 3, 4, 5], 32).unwrap();
+    // println!("{:?}", element);
+    
+    let result = divide(7, 0);
+    match result {
+        Ok(value) => println!("{}", value),
+        Err(e) => println!("Error in function: {}", e),
+    }
+    
+    // Files
+    println!("\n// Files");
+    let file_name = "output.txt";
+    match write_to_file(file_name, "Hello, Rust!") {
+        Ok(()) => println!("Data is written"),
+        Err(e) => println!("Error: {}", e),
+    } 
+    let file_name = "output.txt";
+    match read_file(file_name) {
+        Ok(content) => println!("Content: {}", content),
+        Err(e) => println!("Error: {}", e),
+    }
 }
 
 fn change_str(user: &mut String, user1: &mut String) {
@@ -377,4 +418,24 @@ fn greet_user(name: &str) {
 
 fn mult(data: &(i32, i32)) -> i32 {
     return data.0 * data.1;
+}
+
+fn divide(a: i32, b: i32) -> Result<i32, String> {
+    if b == 0 {
+        return Err(String::from("Division by zero"));
+    } else {
+        return Ok(a / b);
+    }
+}
+
+fn find_element(vec: Vec<i32>, value: i32) -> Option<usize> {
+    return vec.iter().position(|&x| x == value);
+}
+
+fn write_to_file(file_path: &str, content: &str) -> Result<(), io::Error> {
+    return fs::write(file_path, content);
+}
+
+fn read_file(file_path: &str) -> Result<String, io::Error> {
+    return fs::read_to_string(file_path);
 }
