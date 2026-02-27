@@ -1,6 +1,9 @@
 use std::fs::{self, remove_file};
-use std::{io, result};
+use std::{io, result, task};
 use std::collections::HashMap;
+use std::thread;
+use std::time::Duration;
+use tokio::time::sleep;
 
 use crate::math1::division;
 
@@ -382,6 +385,60 @@ fn main() {
         Ok(content) => println!("Content: {}", content),
         Err(e) => println!("Error: {}", e),
     }
+
+     // lesson 10 (Introduction to Multithreading)
+    println!("\n\n\n// lesson 10 (Introduction to Multithreading)");
+    // Threads
+    println!("\n// Threads");
+    let duration = Duration::from_micros(1000);
+    let handle = thread::spawn(|| {
+        for i in 1..5 {
+            println!("Thread: {}", i);
+            thread::sleep(Duration::from_micros(1000));
+        };
+    });
+    for i in 1..5 {
+        println!("Main thread: {}", i);
+        thread::sleep(duration);
+    }
+    handle.join().unwrap();
+
+    // Passing variables to threads
+    println!("\n// Passing variables to threads");
+    let data = vec![1, 6, 3, 7, 90];
+    let handle = thread::spawn(move || {
+        for i in data {
+            println!("Thread: {}", i);
+            thread::sleep(duration);
+        };
+    });
+    for i in 1..5 {
+        println!("Main thread: {}", i);
+        thread::sleep(duration);
+    }
+    handle.join().unwrap();
+
+    // Passing variables to threads with only one vector
+    println!("\n// Passing variables to threads with only one vector");
+    let data = vec![1, 6, 3, 7, 90];
+    let handle = thread::spawn({
+        let data_clone = data.clone();
+        move || {
+            for i in data_clone {
+                println!("Thread: {}", i);
+                thread::sleep(duration);
+            };
+        }
+    });
+    for i in data {
+        println!("Main thread: {}", i);
+        thread::sleep(duration);
+    }
+    handle.join().unwrap();
+
+    // Async & Await
+    println!("\n// Threads");
+    async_and_await();
 }
 
 fn change_str(user: &mut String, user1: &mut String) {
@@ -438,4 +495,24 @@ fn write_to_file(file_path: &str, content: &str) -> Result<(), io::Error> {
 
 fn read_file(file_path: &str) -> Result<String, io::Error> {
     return fs::read_to_string(file_path);
+}
+
+#[tokio::main]
+async fn async_and_await() {
+    let task1 = simulate_download("File 1", 2).await;
+    let task2 = simulate_download("File 2", 3).await;
+    println!("{} and {} are download!", task1, task2);
+    
+    let (task1, task2) = tokio::join!(
+        simulate_download("File 1", 3),
+        simulate_download("File 2", 2),
+    );
+    println!("{} and {} are download!", task1, task2);
+}
+
+async fn simulate_download(file_name: &str, seconds: u64) -> String {
+    println!("Starting to download {}", file_name);
+    sleep(Duration::from_secs(seconds)).await;
+    println!("Finished to download {}", file_name);
+    return file_name.to_string();
 }

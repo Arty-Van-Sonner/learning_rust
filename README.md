@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 9 (Errors and processing)
+## lesson 10 (Introduction to Multithreading)
 
 ### Commands
 1. rustc src/main.rs
