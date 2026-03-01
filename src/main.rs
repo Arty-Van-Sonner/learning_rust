@@ -25,6 +25,52 @@ mod math {
 
 mod math1;
 
+// Struct & Enum
+struct Point {
+    x: f64,
+    y: f64,
+    z: f64,
+}
+
+struct  Color(u8, u8, u8);
+
+struct Marker;
+
+struct Rectangle {
+    width: f64,
+    height: f64,
+}
+impl Rectangle {
+    fn test (&mut self) {
+
+    }
+
+    fn area(&self) -> f64 {
+        return self.width * self.height;
+    }
+
+    fn perimeter(&self) -> f64 {
+        return (self.width + self.height) * 2.0;
+    }
+}
+
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
+enum Shape {
+    Circle(f64),
+    Rectangle {width: f64, height: f64},
+}
+
+struct Pair<T> {
+    first: T,
+    second: T,
+}
+
 fn main() {
     // comment
 
@@ -386,7 +432,7 @@ fn main() {
         Err(e) => println!("Error: {}", e),
     }
 
-     // lesson 10 (Introduction to Multithreading)
+    // lesson 10 (Introduction to Multithreading)
     println!("\n\n\n// lesson 10 (Introduction to Multithreading)");
     // Threads
     println!("\n// Threads");
@@ -437,9 +483,46 @@ fn main() {
     handle.join().unwrap();
 
     // Async & Await
-    println!("\n// Threads");
+    println!("\n// Async & Await");
     async_and_await();
+
+    // lesson 11 (Structures and enumerations)
+    println!("\n\n\n// lesson 11 (Structures and enumerations)");
+    // Struct & Enum
+    println!("\n// Struct & Enum");
+    // Struct
+    println!("\n// Struct");
+    let point = Point{x: 3.0, y: 4.0, z: 0.0};
+    println!("Point coord: ({} {} {})", point.x, point.y, point.z);
+
+    let red = Color(255, 0 , 0);
+    println!("Color: ({} {} {})", red.0, red.1, red.2);
+
+    let marker = Marker;
+
+    let rect1 = Rectangle {
+        width: 3.0,
+        height: 4.0,
+    };
+    println!("Area: {}", rect1.area());
+    println!("Perimeter: {}", rect1.perimeter());
+
+    // Enum
+    println!("\n// Enum");
+    let moving = Direction::Up;
+    move_player(moving);
+
+    let shape = Shape::Rectangle { width: 3.0, height: 4.0 };
+    match shape {
+        Shape::Circle(radius) => println!("Circle with radius: {}", radius),
+        Shape::Rectangle { width, height } => println!("Rectangle with width: {} and hieght: {}", width, height),
+    }
+
+    let pair = Pair {first: 10, second: 45};
+    println!("Pair: first({}) second({})", pair.first, pair.second);
 }
+
+
 
 fn change_str(user: &mut String, user1: &mut String) {
     // let buf = user;
@@ -515,4 +598,13 @@ async fn simulate_download(file_name: &str, seconds: u64) -> String {
     sleep(Duration::from_secs(seconds)).await;
     println!("Finished to download {}", file_name);
     return file_name.to_string();
+}
+
+fn move_player(moving: Direction) {
+    match moving {
+        Direction::Up => println!("Moving Up"),
+        Direction::Down => println!("Moving Down"),
+        Direction::Left => println!("Moving Left"),
+        Direction::Right => println!("Moving Right"),
+    }
 }

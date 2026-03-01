@@ -1,6 +1,6 @@
 # learning_rust
 
-## lesson 10 (Introduction to Multithreading)
+## lesson 11 (Structures and enumerations)
 
 ### Commands
 1. rustc src/main.rs
