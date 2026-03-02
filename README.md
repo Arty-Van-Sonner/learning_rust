@@ -1,6 +1,9 @@
 # learning_rust
 
-## lesson 11 (Structures and enumerations)
+## lesson 12 (Using third-party Crates libraries)
+
+### Libraries
+https://crates.io/
 
 ### Commands
 1. rustc src/main.rs

@@ -4,6 +4,9 @@ use std::collections::HashMap;
 use std::thread;
 use std::time::Duration;
 use tokio::time::sleep;
+use rand::{Rng, RngExt};
+use inquire::Text;
+
 
 use crate::math1::division;
 
@@ -24,6 +27,8 @@ mod math {
 }
 
 mod math1;
+mod book;
+use book::Book;
 
 // Struct & Enum
 struct Point {
@@ -520,6 +525,36 @@ fn main() {
 
     let pair = Pair {first: 10, second: 45};
     println!("Pair: first({}) second({})", pair.first, pair.second);
+
+    
+    // lesson 12 (Using third-party Crates libraries)
+    println!("\n\n\n// lesson 12 (Using third-party Crates libraries)");
+    // Adding modules
+    println!("\n// Adding modules");
+    let mut rng = rand::rng();
+    let random_number: u32 = rng.random_range(1..101);
+    println!("Rand number: {}", random_number);
+
+    let mut library = Vec::new();
+    loop {
+        let title = Text::new("Enter the book title: ").prompt().unwrap();
+        let author = Text::new("Enter the book author: ").prompt().unwrap();
+        let year = Text::new("Enter the book title: ").prompt().unwrap().parse::<u32>().unwrap();
+        
+        let pages = rng.random_range(1000..10001);
+
+        library.push(Book::new(&title, &author, year, pages));
+        println!("Current library:");
+        for book in &library {
+            println!("Book: {:?}", book);
+        }
+
+        let continue_prompt = Text::new("Add another book? (yes/no): ").prompt().unwrap();
+        if continue_prompt.to_lowercase() == "no" {
+            break;
+        }
+    }
+
 }
 
 
