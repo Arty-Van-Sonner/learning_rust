@@ -14,3 +14,4 @@ https://crates.io/
 6. cargo check
 7. cargo build --release
 8. cargo add package_name
+9. cargo doc --open
