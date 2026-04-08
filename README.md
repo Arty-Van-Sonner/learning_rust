@@ -12,3 +12,5 @@ https://crates.io/
 4. cargo build
 5. rustc --version
 6. cargo check
+7. cargo build --release
+8. cargo add package_name
