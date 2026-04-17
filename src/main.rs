@@ -77,6 +77,11 @@ struct Pair<T> {
 }
 
 fn main() {
+    dudar_course();
+    loop_label();
+}
+
+fn dudar_course() {
     // comment
 
     /* 
@@ -554,10 +559,7 @@ fn main() {
             break;
         }
     }
-
 }
-
-
 
 fn change_str(user: &mut String, user1: &mut String) {
     // let buf = user;
@@ -642,4 +644,26 @@ fn move_player(moving: Direction) {
         Direction::Left => println!("Moving Left"),
         Direction::Right => println!("Moving Right"),
     }
+}
+
+fn loop_label() {
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {count}");
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {remaining}");
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {count}");
 }
